@@ -1,8 +1,10 @@
+import { useState } from "react";
+
 export function Button() {
-  let counter = 0;
+  let [counter, setCounter ] = useState(0)
 
   function increment() {
-    counter += 1;
+    setCounter(counter + 1);
     console.log(counter);
   }
     return (
