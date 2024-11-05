@@ -5,7 +5,6 @@ export function Button() {
 
   function increment() {
     setCounter(counter + 1);
-    console.log(counter);
   }
     return (
     <button onClick={increment}>
