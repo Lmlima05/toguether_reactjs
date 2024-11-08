@@ -4,13 +4,13 @@ import 'firebase/auth';
 import 'firebase/database';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDzJW2hor5T9HVvh1LTTxwlylBDNGw-U0k",
-  authDomain: "letmeask-8e486.firebaseapp.com",
-  databaseURL: "https://letmeask-8e486-default-rtdb.firebaseio.com",
-  projectId: "letmeask-8e486",
-  storageBucket: "letmeask-8e486.firebasestorage.app",
-  messagingSenderId: "717919311496",
-  appId: "1:717919311496:web:d81aa8392dc153cfc0313d"
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AYTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
 };
 
 firebase.initializeApp(firebaseConfig);
