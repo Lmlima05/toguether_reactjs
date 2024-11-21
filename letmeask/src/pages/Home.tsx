@@ -11,7 +11,8 @@ import '../styles/auth.css';
 export function Home() {
   const history = useHistory();
 
-  function navigateToNewRoom() {
+  function handleCreateRoom() {
+    
     history.push('/rooms/new')
   }
 
