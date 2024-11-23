@@ -18,9 +18,11 @@ export function Home() {
 
     auth.signInWithPopup(provider).then(result => {
       console.log(result)
+
+      history.push('/rooms/new')
     })
     
-    history.push('/rooms/new')
+    
   }
 
   return (
