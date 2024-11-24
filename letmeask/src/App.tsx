@@ -10,7 +10,7 @@ export const TestContext = createContext('');
 function App() {
   return (
    <BrowserRouter>
-    <TestContext.Provider value={'Teste'}
+    <TestContext.Provider value={'Teste'}>
       <Route path="/" exact Component={Home} />
       <Route path="/rooms/new" Component={NewRoom} />
     </TestContext.Provider> 

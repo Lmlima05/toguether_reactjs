@@ -1,3 +1,4 @@
+import { useContext, UseContext } from 'react';
 import { useHistory } from 'react-router-dom'
 
 import { auth, firebase } from '../services/firebase'
@@ -8,10 +9,13 @@ import googleIconImg from '../assets/images/google-icon.svg';
 
 import { Button } from '../components/Button';
 
+import {  TestContext } from '../App';
+
 import '../styles/auth.css';
 
 export function Home() {
   const history = useHistory();
+  const value = useContext(TestContext)
 
   function handleCreateRoom() {
     const provider = new firebase.auth.GoogleAuthProvider(); 
@@ -28,6 +32,7 @@ export function Home() {
   return (
     <div id="page-auth">
       <aside>
+        <h1>{value}</h1>
         <img src={illustrationImg} alt="ilustração simbolizando perguntas e respostas" />
         <strong>Crie salas de Q&amp;A ao-vivo</strong>
         <p>Tire as dúvidas da sua audiencia em tempo-real</p>
