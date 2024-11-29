@@ -33,7 +33,7 @@ function App() {
  
   return (  
     <BrowserRouter>
-    <TestContext.Provider value={{ value, setValue }}>
+    <TestContext.Provider value={{ value, signInWithGoole }}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/rooms/new" element={<NewRoom />} />
