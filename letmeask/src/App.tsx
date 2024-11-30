@@ -1,15 +1,26 @@
 //import { Home } from './pages/Home';
 import { createContext, useState } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 import { Home } from './pages/Home';
 import { NewRoom } from './pages/NewRoom';
 import { auth, firebase } from './services/firebase';
 
-export const TestContext = createContext({} as any);
+type Value = {
+  id: string;
+  name: string;
+  avatar: string;
+}
+
+type AuthContextType = {
+  value: ObjectType;
+  signInWithGoogle: () => void;
+}
+
+export const AuthContext = createContext({} as AuthContextType);
 
 function App() {
-  const [value, setValue] = useState('Teste');
+  const [value, setValue] = useState();
 
   function signInWithGoole() {
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -22,7 +33,7 @@ function App() {
           throw new Error('Missing information from google Account.')
       } 
 
-      setUser({
+      setValue  ({
         id: uid,
         name: displayName,
         avatar: photoURL,
