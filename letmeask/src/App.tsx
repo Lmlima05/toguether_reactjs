@@ -13,16 +13,16 @@ type Value = {
 }
 
 type AuthContextType = {
-  value: ObjectType;
+  value: Value | undefined;
   signInWithGoogle: () => void;
 }
 
 export const AuthContext = createContext({} as AuthContextType);
 
 function App() {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState<Value>();
 
-  function signInWithGoole() {
+  function signInWithGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider();
 
     auth.signInWithPopup(provider).then((result) => {
@@ -44,12 +44,10 @@ function App() {
  
   return (  
     <BrowserRouter>
-    <TestContext.Provider value={{ value, signInWithGoole }}>
-      <Routes>
+    <AuthContext.Provider value={{ value, signInWithGoogle }}>
         <Route path="/" element={<Home />} />
         <Route path="/rooms/new" element={<NewRoom />} />
-      </Routes>
-    </TestContext.Provider>
+    </AuthContext.Provider>
   </BrowserRouter>
   );
 }
