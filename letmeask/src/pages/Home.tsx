@@ -18,7 +18,7 @@ export function Home() {
   const navigate = useNavigate();
   const {value, signInWithGoogle} = useContext(AuthContext)
 
-  function handleCreateRoom() {
+  async function handleCreateRoom() {
     if (!value) {
       signInWithGoogle()
     }
