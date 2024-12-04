@@ -1,5 +1,5 @@
 //import { Home } from './pages/Home';
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom';
 
 import { Home } from './pages/Home';
@@ -23,7 +23,7 @@ function App() {
   const [value, setValue] = useState<Value>();
 
   useEffect(() => {
-    auth.onAuthStateChanged(user => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
         const {displayName, photoURL, uid } = user
         
@@ -38,6 +38,10 @@ function App() {
         })
       }
     })
+
+    return () => {
+      unsubscribe();
+    }
   }, [])
 
   async function signInWithGoogle() {
@@ -71,3 +75,7 @@ function App() {
 }
 
 export default App;
+function setUser(arg0: { id: string; name: string; avatar: string; }) {
+  throw new Error('Function not implemented.');
+}
+
