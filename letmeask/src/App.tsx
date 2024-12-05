@@ -6,18 +6,7 @@ import { Home } from './pages/Home';
 import { NewRoom } from './pages/NewRoom';
 import { auth, firebase } from './services/firebase';
 
-type Value = {
-  id: string;
-  name: string;
-  avatar: string;
-}
-
-type AuthContextType = {
-  value: Value | undefined;
-  signInWithGoogle: () => Promise<void>;
-}
-
-export const AuthContext = createContext({} as AuthContextType);
+import { AuthContextProvider } from './contexs/AuthContex';
 
 function App() {
   const [value, setValue] = useState<Value>();
@@ -66,10 +55,10 @@ function App() {
  
   return (  
     <BrowserRouter>
-    <AuthContext.Provider value={{ value, signInWithGoogle }}>
+      <AuthContextProvider>
         <Route path="/" element={<Home />} />
         <Route path="/rooms/new" element={<NewRoom />} />
-    </AuthContext.Provider>
+      </AuthContextProvider>
   </BrowserRouter>
   );
 }
