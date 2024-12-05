@@ -1,9 +1,7 @@
-import { useNavigate } from 'react-router-dom'
 import { useContext} from 'react';
+import { useNavigate } from 'react-router-dom'
 
-import { AuthContext } from '../App'
-
-import { auth, firebase } from '../services/firebase'
+import { AuthContext } from '../contexs/AuthContex'
 
 import illustrationImg from '../assets/images/illustration.svg';
 import logoImg from '../assets/images/logo.svg';
@@ -12,24 +10,18 @@ import googleIconImg from '../assets/images/google-icon.svg';
 import { Button } from '../components/Button';
 
 import '../styles/auth.css';
-import { AuthContext } from '../App';
+
 
 export function Home() {
-  const navigate = useNavigate();
-  const {value, signInWithGoogle} = useContext(AuthContext)
+  const history = useNavigate();
+  const { user, signInWithGoogle } = useContext(AuthContext)
 
   async function handleCreateRoom() {
-    if (!value) {
-      signInWithGoogle()
+    if (!user) {
+      await signInWithGoogle()
     }
-    const provider = new firebase.auth.GoogleAuthProvider();
 
-    auth.signInWithPopup(provider).then((result) => {
-      console.log(result);
-
-      // Navegar para /rooms/new
-      navigate('/rooms/new');
-    });
+    history('/rooms/new');
   }
   
   return (
@@ -52,7 +44,9 @@ export function Home() {
           <div className="separator">ou entre na sala</div>
           <form>
             <input type="text" placeholder="Digite o código da sala" />
-            <Button type="submit">Entrar na sala</Button>
+            <Button type="submit">
+              Entrar na sala
+            </Button>
           </form>
         </div>
       </main>
