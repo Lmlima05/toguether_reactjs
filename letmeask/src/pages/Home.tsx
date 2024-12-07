@@ -6,7 +6,7 @@ import googleIconImg from '../assets/images/google-icon.svg';
 
 import { Button } from '../components/Button';
 
-import '../styles/auth.css';
+import '../styles/auth.scss';
 import { useAuth } from '../hooks/useAuth';
 
 
@@ -31,7 +31,7 @@ export function Home() {
           src={illustrationImg}
           alt="Ilustração simbolizando perguntas e respostas"
         />
-        <strong>Crie salas de Q&amp;A ao vivo</strong>
+        <strong>Crie salas de Q&amp;A ao-vivo</strong>
         <p>Tire as dúvidas da sua audiência em tempo real</p>
       </aside>
       <main>
