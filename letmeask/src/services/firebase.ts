@@ -1,4 +1,4 @@
-import firebase from 'firebase/app';
+import firebase from 'firebase';
 import 'firebase/auth';
 import 'firebase/database';
 
@@ -12,9 +12,13 @@ const firebaseConfig = {
     appId: process.env.REACT_APP_APP_ID
 };
 
-firebase.initializeApp(firebaseConfig);
+// Inicializa o Firebase apenas se ainda não foi inicializado
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+}
 
+// Exporta os módulos necessários
 const auth = firebase.auth();
 const database = firebase.database();
 
-export {firebase, auth, database}
+export { firebase, auth, database };
