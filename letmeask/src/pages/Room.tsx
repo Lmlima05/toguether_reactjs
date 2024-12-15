@@ -20,6 +20,16 @@ type FirebaseQuestions = Record<string, {
   isHighLighted: boolean;
 }>
 
+type Question = {
+  id: string;
+  author: {
+    name: string;
+    avatar: string;
+  }
+  content: string;
+  isAnswered: boolean;
+  isHighLighted: boolean;
+}
 type RoomParams = {
   id: string;
 }
@@ -27,6 +37,8 @@ export function Room() {
   const user = useAuth();
   const params = useParams<RoomParams>();
   const [newQuestion, setNewQuestion] = useState('');
+  const [questions, setQuestions] = useState<Question[]>([])
+  const [title, setTitle] = useState('');
 
   const roomId = params.id;
 
@@ -46,6 +58,9 @@ export function Room() {
           isAnswered: value.isAnswered,
         }
       })
+
+      setTitle(databaseRoom.title);
+      setQuestions(parsedQuestions)
     })
   }, [roomId]);
 
@@ -86,8 +101,8 @@ export function Room() {
 
       <main className="content">
         <div className="room-little">
-          <h1>Sala React</h1>
-          <span>4 perguntas</span>
+          <h1>Sala {title}</h1>
+          { questions.length > 0 && <span>4 perguntas</span> }
         </div>
 
         <form onSubmit={handleSendQuestion}>
