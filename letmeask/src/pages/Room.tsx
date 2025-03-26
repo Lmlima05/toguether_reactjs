@@ -9,6 +9,7 @@ import { useAuth } from '../hooks/useAuth';
 import { database } from '../services/firebase';
 
 import '../styles/room.scss';
+import { Question } from '../components/Question';
 
 type RoomParams = {
   id: string;
@@ -125,6 +126,8 @@ export function Room() {
               <Button type="submit" disabled={!user}>Enviar pergunta</Button>
           </div>
         </form>
+
+        {Questions.map()}
       </main>
     </div>
   )
